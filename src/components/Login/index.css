@@ -1,0 +1,12 @@
+.logo{
+    height: 100px;
+    width:  100px;
+    border-radius: 20%;
+}
+div.login-container {
+    margin-top:  -300px;
+}
+
+.form-control {
+    height: 20px;
+}
