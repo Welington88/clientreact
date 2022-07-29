@@ -46,6 +46,15 @@ export default function Alunos(){
         }
     }
 
+    async function editAluno(id: number) {
+        try {
+            history.push(`aluno/novo/${id}`);
+            window.location.reload();
+        } catch (error) {
+            alert('Não foi possível editar o aluno' + error);
+        }
+    }
+
     return(
         <div className="aluno-container">
             <header>
@@ -70,7 +79,7 @@ export default function Alunos(){
                         <b>Email:</b>{aluno['email']}<br/><br/>
                         <b>Idade:</b>{aluno['idade']}<br/><br/>
                         
-                        <button type="button">
+                        <button onClick={() => editAluno(aluno['id'])} type="button">
                             <FiEdit size={25} color="#17202a" />
                         </button>
                         <button type="button">
