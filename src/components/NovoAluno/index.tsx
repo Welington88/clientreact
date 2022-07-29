@@ -35,6 +35,34 @@ export default function NovoAluno(){
         }    
     }
 
+    async function saveOrUpdate(event : any) {
+        event.preventDefault();
+        const dataPost = {
+            nome,
+            email,
+            idade
+        }
+
+        const dataPut = {
+            id,
+            nome,
+            email,
+            idade
+        }
+
+        try {
+            if(alunoId==='0') {
+                await api.post('api/Alunos', dataPost, authorization);  
+            }else {
+                await api.put(`api/Alunos/${id}`, dataPut, authorization);  
+            }
+        } catch (error) {
+            alert('erro ao gravar aluno' + error);
+        } 
+        history.push("/alunos");
+        window.location.reload();
+    }
+
     //hooks user effect
     useEffect(() => {
         if (alunoId === '0')
@@ -52,10 +80,10 @@ export default function NovoAluno(){
                     <Link className="back-link texto" to={"/alunos"} >
                         <FiCornerDownLeft size={25} color="#FFF" /> Retornar
                     </Link>
-                    <form>
-                        <input placeholder="Nome: " value={nome} onChange={e => setNome(e.target.value)} />
-                        <input placeholder="Email: " value={email} onChange={e => setEmail(e.target.value)} />
-                        <input placeholder="Idade: " value={idade} onChange={e => setIdade(Number.parseInt(e.target.value))}/>
+                    <form onSubmit={saveOrUpdate}>
+                        <input placeholder="Nome: " value={nome} onChange={e => setNome(e.target.value)} /><br/>
+                        <input placeholder="Email: " value={email} onChange={e => setEmail(e.target.value)} /> <br/>
+                        <input placeholder="Idade: " value={idade} onChange={e => setIdade(Number.parseInt(e.target.value))}/><br/>
                         <button className="button" type={"submit"} >
                             {alunoId === '0' ? 'Incluir' : 'Atualizar'  }
                         </button>
