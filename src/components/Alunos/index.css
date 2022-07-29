@@ -6,6 +6,7 @@ input {
     height: 20px;
     font-size: 10pt;
     width: 400px;
+    font-size: 12pt;
 }
 ul li {
     list-style: none;
@@ -13,4 +14,17 @@ ul li {
     text-align: left;
     border: 1px solid #fff;
     padding: 5px;
+}
+.aluno-container{
+    width: 80%;
+    height: 80%;
+    margin: auto;
+}
+.lista {
+    padding: 5px;
+    width: 400px;
+    height: 200px;
+    padding: 50px;
+    text-align: left;
+    float: left;
 }
