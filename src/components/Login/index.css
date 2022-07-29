@@ -4,9 +4,10 @@
     border-radius: 20%;
 }
 div.login-container {
-    margin-top:  -30%;
+    margin-top:  -20%;
 }
 
 .form-control {
     height: 20px;
+    margin: 5px;
 }
