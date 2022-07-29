@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './index.css';
 import {FiEdit, FiUserX, FiXCircle} from 'react-icons/fi';
 import { api } from "../../services/api";
+import { createBrowserHistory } from "history";
 const CadastroImagem = require("../../assets/cadastro.png") as string;
 
 export interface alunos {
@@ -26,19 +27,32 @@ export default function Alunos(){
         }
     }
 
+    const history = createBrowserHistory();
+
     //hooks user effect
     useEffect(() => {
         api.get('api/Alunos', authorization).then(
             response => {setAlunos(response.data);})
-    });
+    }, []);
     
+    async function logout() {
+        try {
+            localStorage.clear();
+            localStorage.setItem('token', '');
+            history.push('/');
+            window.location.reload();
+        } catch (error) {
+            alert("Não foi possível fazer o logout " + error);
+        }
+    }
+
     return(
         <div className="aluno-container">
             <header>
                 <img src={CadastroImagem} className="logo" alt="Cadastro" id="img1" /><br/>
                 <span>Bem-Vindo, <strong>{email}</strong>!</span><br/>
                 <Link className="button texto" to="aluno/novo/0" > Novo Aluno </Link> {" "}
-                <button type="button">
+                <button onClick={logout} type="button">
                     <FiXCircle size={35} color="#17202a" />
                 </button>
             </header>
